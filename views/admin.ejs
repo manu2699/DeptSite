@@ -1,0 +1,79 @@
+<% layout('layout') -%>
+<div>
+    <% if ( bool == 1 ) { %>
+
+    <form action="/admin/select" method="POST">
+        <P><i class="fa fa-file-code-o" aria-hidden="true"></i> For File Upload</P>
+        <select class="browser-default" name="sem" style="padding-bottom: 5px">
+            <option value="" disabled selected>Choose Semester</option>
+            <option value="sem2">Semester 2</option>
+            <option value="sem3">Semester 3</option>
+            <option value="sem4">Semester 4</option>
+            <option value="sem5">Semester 5</option>
+            <option value="sem6">Semester 6</option>
+            <option value="sem7">Semester 7</option>
+            <option value="sem8">Semester 8</option>
+        </select>
+        <br>
+        <select class="browser-default" name="categ">
+            <option value="" disabled selected>Choose Question Papers / Study-Materials </option>
+            <option value="quesp">Question Papers</option>
+            <option value="studym">Study Materials</option>
+        </select>
+        <br>
+        <p><i class="fa fa-fire" aria-hidden="true"></i> Other Uploads</p>
+        <select class="browser-default" name="other">
+            <option value="" disabled selected>Choose Type </option>
+            <option value="circ">Circulars</option>
+            <option value="studym">Study Materials</option>
+        </select>
+        <br>
+        <button type="submit" class="btn-lblue">Click Here After Selecting Types</button>
+    </form>
+    <% } %>
+    <% if ( bool == 2 ) { %>
+    <h3>File Upload</h3>
+    <label class="line"></label>
+    <form action="/admin/upload" method="POST" enctype="multipart/form-data" id="testing1" name="test1">
+        <input class="btn-lblue" name="upfile1" type="file">
+        <button type="submit" class="btn-blue">Submit <i class="fas fa-cloud-upload-alt"></i></button>
+    </form>
+    <br>
+    <form action='/admin/goback'>
+        <button type="submit" class="btn-blue">Choose Types Again <i class="fas fa-sync-alt"></i></button>
+    </form>
+    <p> Availabe Files in selected Category</p>
+    <div>
+        <% if(typeof data1 !== 'undefined') { %>
+        <% for(var i = 0; i < data1.length; i++) { %>
+            <form action='/admin/del' method = "POST">
+                <div class="card-wrap" name = "delf">
+                    <%- data2[i] %>
+                    <i class="far fa-file-alt fa-3x" style="padding : 10px"></i>
+                    <button class = "btn-blue" > <a href=<%- data1[i] %>> Download  <i class="fas fa-cloud-download-alt"></i></a> </button>
+                    <select class = "delf" name = "delf">
+                        <option value = "<%= data1[i]%> ">Yes</option>
+                    </select>
+                    <button type="submit" class="btn-lblue" >Delete <i class="fas fa-trash-alt"></i></button>
+                </div>
+            </form>
+        <% } %>
+        <% } %>
+    </div>
+    <% } %>
+    <% if( bool == 0 ) { %>
+    <br>
+    <h3>LOGIN <span><i class="fa fa-address-card" aria-hidden="true"></i></span></h3>
+    <form action="/admin/log" method="POST">
+        <i class="fa fa-user-circle" aria-hidden="true"></i>_Admin
+        <input type="text" name="firstname">
+        <br>
+        <i class="fa fa-key" aria-hidden="true"></i>_Pa$$W0rd:
+        <input type="text" name="password">
+        <button type="submit" class="btn-blue">Validate <i class="fas fa-check-double"></i> </button>
+    </form>
+    <% } %>
+    <br>
+    <div class="clearfix"></div>
+    <i class="fa fa-align-left" aria-hidden="true"></i> <%= msg %>
+</div>

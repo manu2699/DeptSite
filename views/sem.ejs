@@ -1,0 +1,56 @@
+<% layout('layout') -%>
+<!---->
+<% if( bool == 0 ) { %>
+<div>
+  <br>
+  <form action="/sem/select" method="POST">
+    <p><i class="fa fa-hand-pointer-o" aria-hidden="true"> </i> Select Your Semester </p>
+    <select class="browser-default" name="sem">
+      <option value="" disabled selected> </option>
+      <option value="sem2">Semester 2</option>
+      <option value="sem3">Semester 3</option>
+      <option value="sem4">Semester 4</option>
+      <option value="sem5">Semester 5</option>
+      <option value="sem6">Semester 6</option>
+      <option value="sem7">Semester 7</option>
+      <option value="sem8">Semester 8</option>
+    </select>
+    <br>
+    <p><i class="fa fa-hand-peace-o" aria-hidden="true"></i> Select Either Question Papers or Study-Materials </p>
+    <select class="browser-default" name="categ">
+      <option value="" disabled selected> </option>
+      <option value="quesp">Question Papers</option>
+      <option value="studym">Study Materials</option>
+    </select>
+    <br>
+    <button type="submit" class="btn">Seek <i class="fa fa-hand-o-down" aria-hidden="true"></i> </button>
+  </form>
+  <br>
+</div>
+<% } else { %>
+<div>
+  <% if(typeof data1 !== 'undefined') { %>
+  <% for(var i = 0; i < data1.length; i++) { %>
+  <div class="card-wrap" style="display:inline-block">
+    <%- data2[i] %>
+    <i class="far fa-file-alt fa-3x" style="padding: 10px"></i>
+    <button class = "btn-blue" > <a href=<%- data1[i] %>> Download <i class="fas fa-download"></i> </a> </button>
+  </div>
+  <% } %>
+  <% } %>
+</div>
+<br>
+<div class="clearfix"></div>
+<label class="line2"></label>
+<form action='/sem/goback'>
+  <button type="submit" class="btn">Click Here to Choose Types Again</button>
+</form>
+<br>
+<% } %>
+<%= msg %>
+<% if( bool == 0 ) { %>
+  <i class="far fa-handshake"></i>
+<% } else { %>
+  <i class="far fa-grin-beam-sweat"></i> }
+<% } %>
+<br>

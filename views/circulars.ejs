@@ -1,0 +1,16 @@
+<% layout('layout') -%>
+<div>
+    <% if(typeof data1 !== 'undefined') { %>
+    <% for(var i = 0; i < data1.length; i++) { %>
+    <div class="card-wrap" style="display:inline-block">
+        <%- data2[i] %>
+        <i class="far fa-file-alt fa-3x" style="padding: 10px"></i>
+        <button class="btn-blue"> <a href=<%- data1[i] %>> Download <i class="fas fa-download"></i> </a> </button>
+    </div>
+    <% } %>
+    <% } %>
+</div>
+<br>
+<div class="clearfix"></div>
+<label class="line2"></label>
+<!---->
