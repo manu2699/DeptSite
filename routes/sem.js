@@ -72,6 +72,14 @@ router.post('/getSub', (req, res) => {
             msg : 'Fetched Results { ' + '\n' + 'if (insufficient)' + '\n\t' + ' request.staff(upload) '+ ' \n }',
             sub : []
         });
+    }else{
+        res.render('sem', {
+            data1: [],
+            data2: [],
+            bool: 0,
+            msg : 'Error! Try Again',
+            sub : []
+        });
     }
 });
 

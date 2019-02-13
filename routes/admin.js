@@ -79,6 +79,14 @@ router.post('/getSub', (req, res) => {
             msg : 'Fetched Results { ' + '\n' + 'if (insufficient)' + '\n\t' + ' request.staff to upload(more) '+ ' \n }',
             sub : []
         });
+    }else{
+        res.render('admin', {
+            data1: [],
+            data2: [],
+            bool: 1,
+            msg : 'Some Error Occured! Please Try Again',
+            sub : []
+        });
     }
 });
 
