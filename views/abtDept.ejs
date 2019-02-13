@@ -1,2 +1,17 @@
 <% layout('layout') -%>
-<h3>Staffs List</h3>
+<h4>Staffs List <span><i class="fas fa-chalkboard-teacher"></i></span></h4>
+<% if(typeof data1 !== 'undefined') { %>
+<% for(var i = 0; i < data1.length; i++) { %>
+<div class="card-wrap" style="display:inline-block" id = "st">
+    <p>
+    <h5>Name <i class="fa fa-user-circle-o"></i></h5>
+    <h55><%- data1[i] %></h55>
+    <h5>Qualification <i class="fa fa-graduation-cap" aria-hidden="true"></i></h5>
+    <h55><%- data2[i] %></h55>
+    <h5>Designation <i class="fa fa-thumb-tack" aria-hidden="true"></i></h5> 
+    <h55><%- data3[i] %></h55>
+    </p>
+    <!--<button class="btn-blue"> <a href=<%- data1[i] %>> Download <i class="fas fa-download"></i> </a> </button>-->
+</div>
+<% } %>
+<% } %>

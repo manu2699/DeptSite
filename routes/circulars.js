@@ -3,6 +3,8 @@ var router = express.Router();
 const path1 = './public/uploads/circ';
 const fs = require('fs');
 
+var ann = ["CSI ACTIVITIES TO BE CONDUCTED WEEKLY | " , " | 15, 16, 17 Feb Decalred as Holidays | "];
+
 function getDirs() {
     var files = fs.readdirSync(path1),
         paths = [];
@@ -21,7 +23,10 @@ router.get('/', function (req, res) {
     var a, b;
     a = getDirs();
     b = fs.readdirSync(path1);
-    res.render('circulars', { data1: a, data2: b });
+    res.render('circulars', { data1: a, data2: b, bool : 0 , ann : ann});
 });
 
+router.get('/adminedit', (req, res) => {
+    
+});
 module.exports = router;

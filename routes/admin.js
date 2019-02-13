@@ -19,7 +19,7 @@ function getDirs(pt) {
     }
     return paths;
 }
-var bool = 0, c1 ="", c2 = "", c = "", b = "", pt;
+var c1 ="", c2 = "", c = "", pt;
 
 router.get('/', (req, res) => {
     res.render('admin', {bool : 0, data1 : [], data2 : [], msg : "Welcome ADMIN"});
@@ -40,13 +40,11 @@ router.post('/select', (req, res) => {
     else if(c1 !== undefined && c2 !== undefined && c3 === undefined){
         c = c1 + '/' + c2 + '/';
         pt = path1 + c.substring(0, c.length - 1);
-        //console.log(43, c, path1, pt, a, b)
         res.render('admin', { bool : 2,data1 : getDirs(pt), data2 : fs.readdirSync(pt),  msg : "Now Upload Files" });
     }
     else if(c1 === undefined && c2 === undefined && c3 !== undefined){
         c = c3 + '/';
         pt = path1 + c.substring(0, c.length - 1);
-        //console.log(52, c, path1, pt, a, b)
         res.render('admin', { bool : 2, data1 : getDirs(pt), data2 : fs.readdirSync(pt), msg : "Now Upload Files" });
     }
 });
@@ -86,7 +84,6 @@ router.post('/log', (req, res) => {
 router.post('/del' , (req, res) => {
     var s = req.body.delf;
     s = s.replace(/%20/g, " ");
-    //s = s.substring(s.indexOf('/',2), s.length);
     s = ".".concat(s);
     console.log(s.lastIndexOf(' '), s.length,s.substring(0, s.lastIndexOf(' ')));
     s = s.substring(0, s.lastIndexOf(' '))
@@ -94,7 +91,5 @@ router.post('/del' , (req, res) => {
     fs.unlinkSync(s);
     res.render('admin', { bool: 2 , data1 : getDirs(pt), data2 : fs.readdirSync(pt), msg : "File Deleted"});
 });
-
-//fs.unlinkSync("./public/uploads/sem2/quesp/index.ejs");
 
 module.exports = router;

@@ -3,6 +3,7 @@ var path = require('path');
 var engine = require('ejs-locals');
 var app = express();
 var port = process.env.PORT || 3000;
+
 app.set('views', path.join(__dirname, 'views'));
 app.engine('ejs', engine);
 app.set('view engine', 'ejs');

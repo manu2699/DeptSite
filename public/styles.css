@@ -43,29 +43,26 @@ h1 {
   text-align: center;
 }
 h4{
+  color: #371b6b;
+  text-align: center;
+}
+h5{
   color: #f6721a;
   text-align: center;
 }
-
+h55{
+  font-size: 20px;
+  color: #371b6b;
+  text-align: center;
+}
 h2 {
   font-size: 33px;
   text-align: center;
-  color: #029ee8;
+  color: #0a435e;
   ;
 }
 
 /* buttons */
-
-.btn-orange{
-  border-radius: 12px;
-  background-color: rgb(209, 58, 58);
-  cursor: pointer;
-}
-
-.btn-orange:hover {
-  background-color: rgb(47, 38, 58);
-}
-
 
 .btn-blue{
   padding: 10px;
@@ -104,9 +101,7 @@ h2 {
   background-color: rgb(230, 105, 55);
 }
 
-
 /* buttons ends */
-
 
 /* card Layouts */
 
@@ -291,5 +286,8 @@ label.line {
     text-align: left;
   }
 }
-
 /* navbar ends */
+
+#st{
+  font-size: 20px;
+}
