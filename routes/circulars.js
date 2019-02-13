@@ -27,6 +27,6 @@ router.get('/', function (req, res) {
 });
 
 router.get('/adminedit', (req, res) => {
-    
+    res.render('circulars', { data1: a, data2: b, bool : 0 , ann : ann});
 });
 module.exports = router;
