@@ -39,7 +39,7 @@ router.get('/', function (req, res) {
 });
 
 router.get('/goback', (req, res) => {
-    res.render('sem', { data1: [], data2: [],bool : 0,  msg : 'Wanna Choose again ! ',sub : [] });
+    res.render('sem', { data1: [], data2: [],bool : 0,  msg : 'Wanna Choose again ? ',sub : [] });
 });
 
 router.post('/select', (req, res) => {
@@ -52,7 +52,7 @@ router.post('/select', (req, res) => {
             data1: [],//getDirs(pt),
             data2: [],//fs.readdirSync(pt),
             bool: 5,
-            msg : "Select Subject",
+            msg : "Peace Out ! & Select Paper",
             sub : getSubs(pt)
         });
     }
@@ -69,7 +69,7 @@ router.post('/getSub', (req, res) => {
             data1: getDirs(pt),
             data2: fs.readdirSync(pt),
             bool: 1,
-            msg : 'Fetched Results { ' + '\n' + 'if (insufficient)' + '\n\t' + ' request.staff to upload(more) '+ ' \n }',
+            msg : 'Fetched Results { ' + '\n' + 'if (insufficient)' + '\n\t' + ' request.staff(upload) '+ ' \n }',
             sub : []
         });
     }

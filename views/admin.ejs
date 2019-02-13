@@ -80,6 +80,7 @@
         <% if(typeof sub !== 'undefined') { %>
           <form action = '/admin/getSub' method = "POST">
             <select class="browser-default" name="sub">
+              <option value="" disabled selected> Select Paper </option>
               <% for(var i = 0; i < sub.length; i++) { %>
                 <option value = "<%= sub[i]%>"><%- sub[i] %></option>
               <% } %>
@@ -89,7 +90,8 @@
           </form>
         <% } %>
       <% } %>
-
     <div class="clearfix"></div>
+    <br>
     <i class="fa fa-align-left" aria-hidden="true"></i> <%= msg %>
+    <br>
 </div>

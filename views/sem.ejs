@@ -51,6 +51,7 @@
   <% if(typeof sub !== 'undefined') { %>
     <form action = '/sem/getSub' method = "POST">
       <select class="browser-default" name="sub">
+        <option value="" disabled selected> Select Paper </option>
         <% for(var i = 0; i < sub.length; i++) { %>
           <option value = "<%= sub[i]%>"><%- sub[i] %></option>
         <% } %>
@@ -60,10 +61,16 @@
     </form>
   <% } %>
 <% } %>
+<br>
 <%= msg %>
 <% if( bool == 0 ) { %>
   <i class="far fa-handshake"></i>
-<% } else { %>
-  <i class="far fa-grin-beam-sweat"></i> }
 <% } %>
+<% if( bool == 1) { %>
+  <i class="far fa-grin-beam-sweat"></i> 
+<% } %>
+<% if( bool == 5) {%>
+  <i class="fa fa-hand-peace-o" aria-hidden="true"></i>
+<% } %>
+
 <br>
