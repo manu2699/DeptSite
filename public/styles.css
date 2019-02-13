@@ -89,17 +89,18 @@ h2 {
   background-color: #f6721a;
 }
 
-.btn-green {
+.btn-blue2{
   padding: 10px;
   border-radius: 10px;
-  background-color: transparent;
+  background-color: #f6721a;
   cursor: pointer;
   color: white;
 }
 
-.btn-green:hover {
-  background-color: rgb(230, 105, 55);
+.btn-blue2:hover {
+  background-color:  rgb(47, 38, 58);
 }
+
 
 /* buttons ends */
 

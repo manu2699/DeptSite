@@ -1,26 +1,29 @@
 <% layout('layout') -%>
 <% if( bool == 0) { %>
-<div>
-    Syllabus<br>
-    <div class="card-wrap" style="display:inline-block">
-            CSE - Regulation 2013
+<h2>Syllabus <span><i class="fas fa-flag-checkered"></i></span></h2>
+<div class="card-wrap" style="display:inline-block">
+    CSE - Regulation 2013
     <i class="far fa-file-alt fa-3x" style="padding: 10px"></i>
-    <button class="btn-blue"><a href = "https://www.annauniv.edu/academic_courses/01.%20UG%20WS%20upt%20on%2029.06.2015%20-F/04.%20I%20&%20C/22.%20CSE.pdf" target="_blank">  Download <i class="fas fa-download"></i> </a> </button>
-    </div>
-    <div class="card-wrap" style="display:inline-block">
-            CSE - Regulation 2017
-            <i class="far fa-file-alt fa-3x" style="padding: 10px"></i>
-            <button class="btn-blue"><a href = "https://www.annauniv.edu/academic_courses/04.%20I%20&%20C/01.B.E.%20CSE%20final.pdf" target="_blank">  Download <i class="fas fa-download"></i> </a> </button>
-    </div>
-    <div class="clearfix"></div>
-    <label class="line2"></label>
-<!--
-<form action='/circulars/adminedit' method="GET">
-    <button type="submit" class="btn">Edit</button>
-</form>-->
+    <button class="btn-blue"><a href="https://www.annauniv.edu/academic_courses/01.%20UG%20WS%20upt%20on%2029.06.2015%20-F/04.%20I%20&%20C/22.%20CSE.pdf"
+            target="_blank"> Download <i class="fas fa-download"></i> </a> </button>
+</div>
+<div class="card-wrap" style="display:inline-block">
+    CSE - Regulation 2017
+    <i class="far fa-file-alt fa-3x" style="padding: 10px"></i>
+    <button class="btn-blue"><a href="https://www.annauniv.edu/academic_courses/04.%20I%20&%20C/01.B.E.%20CSE%20final.pdf"
+            target="_blank"> Download <i class="fas fa-download"></i> </a> </button>
+</div>
+<div class="clearfix"></div>
+<label class="line2"></label>
+
 <div>
-    Circulars / Announcements<br>
-    <marquee><%- ann %> </marquee>
+    <h2>Circulars / Announcements <span></span><i class="fab fa-pushed"></i></h2>
+    <marquee>
+        <%- ann %>
+    </marquee>
+    <form action='/circulars/adminedit' method="GET">
+        <button type="submit" class="btn-blue2">Add Announcements </button>
+    </form>
     <% if(typeof data1 !== 'undefined') { %>
     <% for(var i = 0; i < data1.length; i++) { %>
     <div class="card-wrap" style="display:inline-block">
@@ -34,5 +37,37 @@
 <br>
 <div class="clearfix"></div>
 <label class="line2"></label>
+<% } %>
+<br>
+<% if( bool == 1 ) { %>
+<marquee>
+    <%- ann %>
+</marquee>
+<br>
+<h3>LOGIN <span><i class="fa fa-address-card" aria-hidden="true"></i></span></h3>
+<form action="/circulars/log" method="POST">
+    <i class="fa fa-user-circle" aria-hidden="true"></i>_Admin
+    <input type="text" name="firstname">
+    <br>
+    <i class="fa fa-key" aria-hidden="true"></i>_Pa$$W0rd:
+    <input type="text" name="password">
+    <button type="submit" class="btn-blue">Validate <i class="fas fa-fingerprint"></i> </button>
+</form>
+<% } %>
+<% if( bool == 2) { %>
+<br>
+<h4> Current Marquee <span><i class="fab fa-pushed"></i></span></h4>
+<marquee>
+    <%- ann %>
+</marquee>
+<br>
+<form action="/circulars/update" method="POST">
+    <input type="text" name="insert">
+    <button type="submit" class="btn-blue">Add <i class="far fa-plus-square"></i> </button>
+</form>
+<br>
+<form action='/circulars/getback' method="GET">
+    <button type="submit" class="btn-blue2">Log Out</button>
+</form>
 <% } %>
 <!---->
