@@ -4,8 +4,21 @@ const fs = require('fs');
 var formidable = require('formidable');
 var bodyParser = require('body-parser');
 var path1 = './public/uploads/';
+var { readdirSync } = require('fs')
 
 router.use(bodyParser.urlencoded({ extended: true }));
+
+function getSubs(pt){
+    var source = pt;
+    var Dirs = [], src = readdirSync(source);
+    for(var i = 0; i < src.length; i++){
+        var t = fs.statSync(source + src[i])
+        if(t.isDirectory())
+            Dirs.push(src[i])
+    }
+    //console.log(Dirs);
+    return Dirs;
+}
 
 function getDirs(pt) {
     var files = fs.readdirSync(pt),
@@ -22,7 +35,11 @@ function getDirs(pt) {
 var c1 ="", c2 = "", c = "", pt;
 
 router.get('/', (req, res) => {
-    res.render('admin', {bool : 0, data1 : [], data2 : [], msg : "Welcome ADMIN"});
+    res.render('admin', {bool : 0, data1 : [], data2 : [], msg : "Welcome ADMIN", sub : []});
+});
+
+router.get('/goback', (req, res) => {
+    res.render('admin', { bool : 1, msg : "Please choose types" , sub : []});
 });
 
 router.post('/select', (req, res) => {
@@ -40,19 +57,30 @@ router.post('/select', (req, res) => {
     else if(c1 !== undefined && c2 !== undefined && c3 === undefined){
         c = c1 + '/' + c2 + '/';
         pt = path1 + c.substring(0, c.length - 1);
-        res.render('admin', { bool : 2,data1 : getDirs(pt), data2 : fs.readdirSync(pt),  msg : "Now Upload Files" });
+        res.render('admin', { bool : 5, data1 : [] , data2 : [],  msg : "Now Select Subject to Upload Files", sub : getSubs(pt + "/") });
     }
     else if(c1 === undefined && c2 === undefined && c3 !== undefined){
         c = c3 + '/';
         pt = path1 + c.substring(0, c.length - 1);
-        res.render('admin', { bool : 2, data1 : getDirs(pt), data2 : fs.readdirSync(pt), msg : "Now Upload Files" });
+        res.render('admin', { bool : 2, data1 : getDirs(pt), data2 : fs.readdirSync(pt), msg : "Now Upload Files", sub : [] });
     }
 });
 
-router.get('/goback', (req, res) => {
-    res.render('admin', { bool : 1, msg : "Please choose types" });
+router.post('/getSub', (req, res) => {
+    var t = req.body.sub;
+    pt = pt + '/' + t;
+    c = c + t + '/';
+    console.log(pt, c);
+    if(pt !== undefined){
+        res.render('admin', {
+            data1: getDirs(pt),
+            data2: fs.readdirSync(pt),
+            bool: 2,
+            msg : 'Fetched Results { ' + '\n' + 'if (insufficient)' + '\n\t' + ' request.staff to upload(more) '+ ' \n }',
+            sub : []
+        });
+    }
 });
-
 
 router.post('/upload', (req, res) => {
     var form = new formidable.IncomingForm();
@@ -65,31 +93,28 @@ router.post('/upload', (req, res) => {
 
     form.on('file', function (name, file){
         console.log('Uploaded ' + file.name);
-        res.render('admin', { bool: 2 , data1 : getDirs(pt), data2 : fs.readdirSync(pt), msg : "File Uploaded"});
+        res.render('admin', { bool: 2 , data1 : getDirs(pt), data2 : fs.readdirSync(pt), msg : "File Uploaded", sub : []});
     });
 });
 
 router.post('/log', (req, res) => {
     var uname = req.body.firstname;
     var pass = req.body.password;
-    if (uname == "cse" && pass == "vit") {
-        bool = 1;
-        res.render('admin', { bool: 1,  data1 : [], data2 : [], msg : "Successfully Logged in!  Now choose Types to Upload file"});
-    } else {
-        bool = 0;
-        res.render('admin', { bool: 0, data1 : [], data2 : [],  msg : "Error in LOG-IN"});
-    }
+    if (uname == "cse" && pass == "vit")
+        res.render('admin', { bool: 1,  data1 : [], data2 : [], msg : "Successfully Logged in!  Now choose Types to Upload file", sub : []});
+    else
+        res.render('admin', { bool: 0, data1 : [], data2 : [],  msg : "Error in LOG-IN", sub : []});
 });
 
 router.post('/del' , (req, res) => {
     var s = req.body.delf;
     s = s.replace(/%20/g, " ");
     s = ".".concat(s);
-    console.log(s.lastIndexOf(' '), s.length,s.substring(0, s.lastIndexOf(' ')));
     s = s.substring(0, s.lastIndexOf(' '))
-    console.log("@ del 90 ", req.body.delf, s)
     fs.unlinkSync(s);
-    res.render('admin', { bool: 2 , data1 : getDirs(pt), data2 : fs.readdirSync(pt), msg : "File Deleted"});
+    res.render('admin', { bool: 2 , data1 : getDirs(pt), data2 : fs.readdirSync(pt), msg : "File Deleted", sub : []});
 });
 
 module.exports = router;
+
+// res.render('admin', { bool : 2, data1 : getDirs(pt), data2 : fs.readdirSync(pt), msg : "Now Upload Files" });

@@ -26,7 +26,8 @@
   </form>
   <br>
 </div>
-<% } else { %>
+<% } %>
+<% if(bool == 1) { %>
 <div>
   <% if(typeof data1 !== 'undefined') { %>
   <% for(var i = 0; i < data1.length; i++) { %>
@@ -45,6 +46,19 @@
   <button type="submit" class="btn-lblue">Click Here to Choose Types Again</button>
 </form>
 <br>
+<% } %>
+<% if( bool == 5) { %>
+  <% if(typeof sub !== 'undefined') { %>
+    <form action = '/sem/getSub' method = "POST">
+      <select class="browser-default" name="sub">
+        <% for(var i = 0; i < sub.length; i++) { %>
+          <option value = "<%= sub[i]%>"><%- sub[i] %></option>
+        <% } %>
+      </select>
+      <br>
+      <button type="submit" class="btn-lblue">Seek</button>
+    </form>
+  <% } %>
 <% } %>
 <%= msg %>
 <% if( bool == 0 ) { %>

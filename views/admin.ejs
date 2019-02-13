@@ -61,6 +61,7 @@
         <% } %>
     </div>
     <% } %>
+
     <% if( bool == 0 ) { %>
     <br>
     <h3>LOGIN <span><i class="fa fa-address-card" aria-hidden="true"></i></span></h3>
@@ -74,6 +75,21 @@
     </form>
     <% } %>
     <br>
+
+    <% if( bool == 5) { %>
+        <% if(typeof sub !== 'undefined') { %>
+          <form action = '/admin/getSub' method = "POST">
+            <select class="browser-default" name="sub">
+              <% for(var i = 0; i < sub.length; i++) { %>
+                <option value = "<%= sub[i]%>"><%- sub[i] %></option>
+              <% } %>
+            </select>
+            <br>
+            <button type="submit" class="btn-lblue">Ready to Upload ! </button>
+          </form>
+        <% } %>
+      <% } %>
+
     <div class="clearfix"></div>
     <i class="fa fa-align-left" aria-hidden="true"></i> <%= msg %>
 </div>
