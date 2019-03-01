@@ -4,7 +4,7 @@
 <% if( bool == 0 ) { %>
 <div>
   <form action="/sem/select" method="POST">
-    <p><i class="fa fa-hand-pointer-o" aria-hidden="true"> </i>  </p>
+    <p> &#x261D; </p>
     <select class="browser-default" name="sem">
       <option value="" disabled selected> Select Your Semester </option>
       <option value="sem2">Semester 2</option>
@@ -15,7 +15,7 @@
       <option value="sem7">Semester 7</option>
       <option value="sem8">Semester 8</option>
     </select>
-    <p><i class="fa fa-hand-peace-o" aria-hidden="true"></i>  </p>
+    <p>&#x270C; </p>
     <select class="browser-default" name="categ" style="border : 50px">
       <option value="" disabled selected> Select Either Question Papers or Study-Materials </option>
       <option value="quesp">Question Papers</option>
@@ -64,13 +64,13 @@
 <br>
 <%= msg %>
 <% if( bool == 0 ) { %>
-  <i class="far fa-handshake"></i>
+  &#x1F91D;
 <% } %>
 <% if( bool == 1) { %>
-  <i class="far fa-grin-beam-sweat"></i> 
+  &#x1F602;
 <% } %>
 <% if( bool == 5) {%>
-  <i class="fa fa-hand-peace-o" aria-hidden="true"></i>
+  &#x270C;
 <% } %>
 
 <br>
